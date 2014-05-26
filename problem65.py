@@ -1,16 +1,11 @@
 #!/usr/bin/env python
 
 from fractions import Fraction
+from pe_tools import cf_to_rational
 
 def sum_of_digits(n):
     return sum(map(int, str(n)))
 
-def cf_to_rational(cf):
-    cf = cf[::-1]
-    c = Fraction(cf[0], 1)
-    for a in cf[1:]:
-        c = Fraction(a) + Fraction(c.denominator, c.numerator)
-    return c
 
 if __name__ == '__main__':
     e = [2]
