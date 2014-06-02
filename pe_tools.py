@@ -57,3 +57,34 @@ def is_square(n):
         return n == s*s
     return False
     
+def decorator_function(d):
+    def new_decorator(f):
+        g = decorator(f)
+        g.__name__ = f.__name__
+        g.__doc__ == f.__doc__
+        g.__dict__.update(f.__dict__)
+        return g
+    new_decorator.__name__ = d.__name__
+    new_decorator.__doc__ = d.__doc__
+    new_decorator.__dict__.update(d.__dict__)
+    return new_decorator
+
+class decorator_class(object):
+    def __init__(self, f):
+        self.__name__ = f.__name__
+        self.__doc__ == f.__doc__
+        self.__dict__.update(f.__dict__)
+        
+
+class memoized(decorator_class):
+    def __init__(self, f):
+        super(memoized, self).__init__(f)
+        self.func = f
+        self.cache = {}
+
+    def __call__(self, *args):
+        key = str(args)
+        if key not in self.cache:
+            self.cache[key] = self.func(*args)
+        return self.cache[key]
+
