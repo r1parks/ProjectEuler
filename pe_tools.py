@@ -88,3 +88,10 @@ class memoized(decorator_class):
             self.cache[key] = self.func(*args)
         return self.cache[key]
 
+@memoized
+def nCk(n, k):
+    assert(k <= n)
+    if k == 0 or n == k:
+        return 1
+    return nCk(n-1, k-1) + nCk(n-1, k)
+
