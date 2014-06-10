@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-from pe_tools import memoized
+
 from primes import is_prime
 
-primes = [x for x in range(10000) if is_prime(x)]
+primes = [x for x in range(1000) if is_prime(x)]
 
-factors = [0] * 10 ** 7
+factors = [0] * (10 ** 6 + 1)
 
 def set_factors():
     for i in range(len(factors)):
@@ -15,6 +15,8 @@ def set_factors():
             if i % p == 0:
                 factors[i] = [p, i/p]
                 break
+
+set_factors()
 
 def get_factors(n):
     if len(factors[n]) == 1:
@@ -31,16 +33,8 @@ def phi(n):
         p *= 1 - (1.0/fact)
     return int(round(p))
 
-def is_permutation(x, y):
-    from collections import Counter
-    return Counter(str(x)) == Counter(str(y))
-
 if __name__ == '__main__':
-    best = 99999999999.0
-    set_factors()
-    for i in range(10, len(factors)):
-        p = phi(i)
-        if is_permutation(i, p):
-            if i / float(p) < best:
-                best = i / float(p)
-                print "{}: {}".format(i, p)
+    total = 0
+    for i in range(2, 1000000+1):
+        total += phi(i)
+    print "{}".format(total)
