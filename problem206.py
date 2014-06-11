@@ -7,6 +7,7 @@ last8 = ['950530', '792930', '986670', '004170', '278330', '196970', '375430', '
 
 if __name__ == '__main__':
     from itertools import count
+    import sys
     r1 = re.compile('1.2.3.4.5.6.7.8.9.0$')
         
     for next_digits in range(10000):
@@ -14,4 +15,5 @@ if __name__ == '__main__':
             n = str(next_digits) + last_digits
             s = str(long(n) ** 2)
             if r1.match(s):
-                print "{}: {}".format(n, s)
+                print "{}".format(n, s)
+                sys.exit(0)
