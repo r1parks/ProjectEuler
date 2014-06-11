@@ -39,7 +39,5 @@ if __name__ == '__main__':
     assert(G.out_degree(start) == nrows)
     assert(G.in_degree(finish) == nrows)
     path = networkx.shortest_path(G, start, finish, weight='weight')
-    print "{}".format(path)
     path_weights = [G.edge[path[i]][path[i+1]]['weight'] for i in range(len(path)-2)]
-    print "weights: {}".format(path_weights)
-    print "total: {}".format(sum(path_weights))
+    print "{}".format(sum(path_weights))
