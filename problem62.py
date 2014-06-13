@@ -10,6 +10,6 @@ if __name__ == '__main__':
         cube_list.append(next_cube)
         cubes[key] = cube_list
         if len(cube_list) == 5:
-            print str(sorted(cube_list))
+            print "{}".format(sorted(cube_list)[0])
             import sys; sys.exit(0)
         n += 1

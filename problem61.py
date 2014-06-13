@@ -57,6 +57,5 @@ if __name__ == '__main__':
     for n in tri_set:
         s = find_sequence([n], sets)
         if s:
-            print s
             print "sum: {}".format(sum(map(int, s)))
             import sys; sys.exit(0)

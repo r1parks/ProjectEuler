@@ -12,5 +12,4 @@ if __name__ == '__main__':
     for i in range(1,40):
         e += [1, 2*i, 1]
     c = cf_to_rational(e[:100])
-    print str(c)
-    print "numerator sum: {}".format(sum_of_digits(c.numerator))
+    print "{}".format(sum_of_digits(c.numerator))

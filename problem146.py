@@ -26,9 +26,8 @@ if __name__ == '__main__':
     n = 10
     while n < 150000000:
         if fits_prime_pattern(n):
-            print str(n)
             total += n
             n += 10
         n += 10
-    print "total: {}".format(str(total))
+    print "{}".format(str(total))
         

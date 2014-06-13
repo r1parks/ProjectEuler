@@ -30,7 +30,7 @@ def add_new_primes(new, old):
         if possible_set not in old and possible_set not in new_sets and try_prime_test(possible_set):
             new_sets.append(possible_set)
             if len(possible_set) == 5:
-                print possible_set
+                print sum(possible_set)
                 sys.exit(0)
     old.update(new_sets)
 

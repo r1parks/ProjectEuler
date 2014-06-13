@@ -25,5 +25,4 @@ if __name__ == '__main__':
         if x > bestX:
             bestD = d
             bestX = x
-    print "Best D: {}".format(bestD)
-    print "Best x: {}".format(bestX)
+    print "{}".format(bestD)
