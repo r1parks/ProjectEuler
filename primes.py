@@ -45,6 +45,8 @@ def is_prime(n):
         return miller_rabin(n)
 
 def find_next_prime(n):
+    if n < 2:
+        return 2
     n += 1 if n % 2 == 0 else 0
     while is_prime(n) == False:
         n += 2
