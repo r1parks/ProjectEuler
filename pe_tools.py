@@ -1,4 +1,21 @@
 
+def normal_vector(p1, p2):
+    """
+    returns the vector p1->p2 in normalized form: 
+    a*i + b*j + c*k = (a, b, c)
+    """
+    x1, y1, z1 = p1
+    x2, y2, z2 = p2
+    return (x2-x1, y2-y1, z2-z1)
+
+def cross_product(u, v):
+    """
+    vectors of the form (u1, u2, u3), (v1, v2, v3)
+    """
+    u1, u2, u3 = u
+    v1, v2, v3 = v
+    return ((u2*v3 - u3*v2), (u3*v1 - u1*v3), (u1*v2 - u2*v1))
+
 def approx_int_sqrt(n):
     import math
     return int(math.sqrt(n))
@@ -88,10 +105,51 @@ class memoized(decorator_class):
             self.cache[key] = self.func(*args)
         return self.cache[key]
 
-@memoized
-def nCk(n, k):
-    assert(k <= n)
-    if k == 0 or n == k:
-        return 1
-    return nCk(n-1, k-1) + nCk(n-1, k)
+def nCr(n, r):
+    assert(r <= n)
+    if n > 100:
+        return nCr_big(n, r)
+    else:
+        return nCr_mem(n, r)
 
+@memoized
+def nCr_mem(n, r):
+    if r == 0 or n == r:
+        return 1
+    return nCr_mem(n-1, r-1) + nCr_mem(n-1, r)
+
+def nCr_big(n, r):
+    if r > n/2:
+        r = n - r
+    ans = 1
+    for i in range(1,r+1):
+        ans *= n - r + i
+        ans /= i
+    return ans
+
+def numDivisors(n):
+    import primes
+    if n <= 1:
+        return 0
+    factors = primes.factorGen(n)
+    ans = 1
+    for _,x in factors:
+        ans *= x+1
+    return ans
+
+def divisorGen(n):
+    import primes
+    factors = list(primes.factorGen(n))
+    nfactors = len(factors)
+    f = [0] * nfactors
+    while True:
+        yield reduce(lambda x, y: x*y, [factors[x][0]**f[x] for x in range(nfactors)], 1)
+        i = 0
+        while True:
+            f[i] += 1
+            if f[i] <= factors[i][1]:
+                break
+            f[i] = 0
+            i += 1
+            if i >= nfactors:
+                return

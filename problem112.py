@@ -32,8 +32,7 @@ def bouncyRatio(n):
 
 if __name__ == '__main__':
     from itertools import count
-    for i in count(1):
+    for i in count(1000):
         if bouncyRatio(i) >= 0.99:
-            print "{}: {}".format(1000, bouncyBelow(1000))
             print "{}".format(i)
             break
